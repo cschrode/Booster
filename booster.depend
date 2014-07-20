@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1405826745 source:/home/user/Dev-Tools/booster/src/main.cpp
+	"includes/define.h"
+
+1405826790 /home/user/Dev-Tools/booster/src/includes/define.h
+	<stdlib.h>
+	<libgen.h>
+	<unistd.h>
+	<iostream>
+	<string>
+
