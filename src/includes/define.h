@@ -75,14 +75,27 @@ void BuildBoost()
     system(buff);
 }
 
-void ExtractLibraries()
+void ExtractSharedLibraries()
 {
     char buff[2048];
     sprintf(
         buff,
-        "cd %s && mkdir lib && %s",
+        "cd %s && mkdir -p lib/shared && %s",
         GetCurrentPath().c_str(),
-        "find . -type f -iname '*.o' -exec cp -t'./lib/' {} \\+"
+        "find . -type f -iname '*.o' -exec cp -t'./lib/shared/' {} \\+"
+    );
+
+    system(buff);
+}
+
+void ExtractStaticLibraries()
+{
+    char buff[2048];
+    sprintf(
+        buff,
+        "cd %s && mkdir -p lib/static && %s",
+        GetCurrentPath().c_str(),
+        "find . -type f -iname '*.a' -exec cp -t'./lib/static/' {} \\+"
     );
 
     system(buff);
@@ -122,7 +135,8 @@ void InstallBoost()
     UnzipBoostArchive();
     BootstrapBoost();
     BuildBoost();
-    ExtractLibraries();
+    ExtractSharedLibraries();
+    ExtractStaticLibraries();
     CopyHeaders();
     CopyDocumentation();
 }
